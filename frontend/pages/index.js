@@ -15,6 +15,23 @@ export default function Home() {
     }
   }
 
+  const parseCSV = (text) => {
+    const lines = text.trim().split('\n')
+    const headers = lines[0].split(',')
+    const transactions = []
+    
+    for (let i = 1; i < lines.length; i++) {
+      const values = lines[i].split(',')
+      const transaction = {}
+      headers.forEach((header, index) => {
+        transaction[header.trim()] = values[index]?.trim()
+      })
+      transactions.push(transaction)
+    }
+    
+    return transactions
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     
@@ -27,13 +44,20 @@ export default function Home() {
     setError(null)
 
     try {
-      const formData = new FormData()
-      formData.append('file', file)
-      formData.append('method', method)
-
+      // Read CSV file
+      const text = await file.text()
+      const transactions = parseCSV(text)
+      
+      // Call backend API
       const response = await fetch('/api/calculate', {
         method: 'POST',
-        body: formData,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          method: method,
+          transactions: transactions
+        })
       })
 
       if (!response.ok) {
@@ -41,9 +65,15 @@ export default function Home() {
       }
 
       const data = await response.json()
-      setResult(data.data)
+      
+      if (data.success) {
+        setResult(data.data)
+      } else {
+        throw new Error(data.error || 'Calculation failed')
+      }
+      
     } catch (err) {
-      setError('Error calculating taxes. Please check your CSV format.')
+      setError(err.message || 'Error calculating taxes. Please check your CSV format.')
       console.error(err)
     } finally {
       setLoading(false)
