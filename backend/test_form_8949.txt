@@ -1,0 +1,18 @@
+FORM 8949 - Sales and Other Dispositions of Capital Assets
+================================================================================
+
+Cost Basis Method: FIFO
+
+SHORT-TERM TRANSACTIONS (held 1 year or less)
+--------------------------------------------------------------------------------
+BTC      Acquired: 01/15/2023 Sold: 01/10/2024 Proceeds: $    45000.00 Cost: $    20010.00 Gain/Loss: $    24990.00
+BTC      Acquired: 06/20/2023 Sold: 01/10/2024 Proceeds: $     9000.00 Cost: $     6002.00 Gain/Loss: $     2998.00
+
+Short-term Total: $27988.00
+
+LONG-TERM TRANSACTIONS (held more than 1 year)
+--------------------------------------------------------------------------------
+
+Long-term Total: $0.00
+
+TOTAL GAIN/LOSS: $27988.00
