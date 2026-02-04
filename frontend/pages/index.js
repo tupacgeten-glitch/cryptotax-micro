@@ -2,20 +2,20 @@ import { useState } from 'react'
 import Head from 'next/head'
 
 export default function Home() {
-  const [file, setFile] = useState<File | null>(null)
-  const [method, setMethod] = useState<'FIFO' | 'LIFO'>('FIFO')
+  const [file, setFile] = useState(null)
+  const [method, setMethod] = useState('FIFO')
   const [loading, setLoading] = useState(false)
-  const [result, setResult] = useState<any>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [result, setResult] = useState(null)
+  const [error, setError] = useState(null)
 
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0])
       setError(null)
     }
   }
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     
     if (!file) {

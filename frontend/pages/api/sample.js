@@ -1,9 +1,4 @@
-import type { NextApiRequest, NextApiResponse } from 'next'
-
-export default function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default function handler(req, res) {
   const csvContent = `date,type,amount,price,symbol,fee
 2023-01-15,buy,1.0,20000.00,BTC,10.00
 2023-03-20,buy,10.0,1800.00,ETH,5.00
